@@ -1,57 +1,87 @@
-AI-Powered Email Classification System
-This project is an intelligent email classification system designed for Italian business environments. It classifies incoming emails into predefined categories using a fine-tuned BERT model. The system also includes functionality for collecting user feedback, performing monthly automatic retraining, and deploying the model as a Dockerized API service.
+✉️ Smart Email Classifier for Italian Business
+Welcome to your intelligent email classification system — built to streamline how Italian companies manage and route their emails. Powered by state-of-the-art AI (BERT for Italian), this solution reads incoming emails and instantly sorts them into the right business department.
 
-Features
-Automatically classifies Italian emails into one of several business-related categories based on subject, body, and attachments.
+No more misrouted emails. No more delays.
 
-Fine-tuned transformer model (dbmdz/bert-base-italian-xxl-cased) using synthetic but realistic email data.
+🧠 What It Does
+Understands emails written in Italian, including subjects, bodies, and even attachments.
 
-Collects real user feedback when classification is incorrect and uses it to continuously improve the model.
+Assigns each email to the correct business category like HR, Legal, Accounting, Customer Service, and more.
 
-Retrains the model every month automatically using newly collected feedback data.
+Learns from feedback — when a user corrects a label, the system remembers and improves.
 
-Exposes a RESTful API with FastAPI to handle real-time predictions and feedback.
+Retrains itself every month automatically with fresh feedback to stay sharp.
 
-Fully containerized using Docker with GPU support for scalable production deployment.
+Runs as an API you can integrate into any app, web tool, or internal system.
 
-Technologies Used
-HuggingFace Transformers and Datasets for model training and tokenization.
+Supports GPU acceleration and is ready to scale using Docker.
 
-PyTorch and scikit-learn for deep learning and evaluation.
+🔧 Built With Modern Technologies
+Transformers + PyTorch for training and running a custom Italian BERT model.
 
-Faker for generating synthetic email content in Italian.
+FastAPI for fast and modern RESTful API endpoints.
 
-Pandas for data handling and CSV operations.
+APScheduler for automated monthly retraining.
 
-FastAPI and Pydantic for building and validating REST API services.
+Faker for generating realistic Italian email examples.
 
-APScheduler for scheduling automatic monthly retraining jobs.
+Pandas & Scikit-learn for data processing and metrics.
 
-Docker and docker-compose with NVIDIA GPU support for deployment.
+Docker & NVIDIA runtime for robust, GPU-powered deployment.
 
-Project Capabilities
-Simulates realistic Italian business emails from categories such as legal, accounting, invoicing, company vehicles, HR, procurement, customer relations, and IT services.
+🗂 Categories the AI Can Detect
+The model can accurately classify emails into key corporate areas such as:
 
-Parses structured JSON inputs containing subject, body, and attachments.
+Legal
 
-Uses BERT to classify emails and automatically handles long texts by breaking them into chunks.
+Accounting
 
-Allows users to submit feedback when a classification is incorrect, logging the correct label.
+Invoicing
 
-Uses this feedback in retraining, replacing the old model with a new one without manual intervention.
+Company Vehicles
 
-Includes a scheduler that triggers retraining automatically on the 1st of each month.
+Human Resources
 
-The system is easily extensible to add new categories or input formats.
+Procurement
 
-Deployment and Usage
-The system can be trained and tested locally using Python scripts or deployed in production using Docker. The REST API includes endpoints for predicting email labels and submitting feedback. The model and feedback logs are automatically updated after each retraining cycle. Everything is packaged into a container to ensure reproducibility and GPU compatibility.
+Customer Service
 
-Input Format
-The API accepts structured email input with subject, body, and optional attachments. The attachments are parsed to extract their textual content and included in the classification process. Input must follow a specific JSON format to ensure compatibility with the model.
+IT & Technical Services
 
-Output
-The API returns the predicted label and the complete input text used by the model. If the user provides the correct label and it differs from the prediction, the system logs the feedback and stores it for future model improvement.
+These are customizable and easily expandable based on your organization’s needs.
 
-API Availability
-Once deployed, the API is accessible on the specified port (default is 8001) and can be tested using tools such as Postman or integrated into external applications.
+🧾 How the Input Works
+The system expects a JSON-formatted email with:
+
+A subject line (soggetto)
+
+The main email body (corpo)
+
+Optional attachments with extracted text (allegati)
+
+It processes the entire content, even if long, by breaking it into chunks the model can handle — ensuring accurate classification every time.
+
+🔁 Always Getting Smarter
+Every time the model mislabels something and the user provides the correct label, it logs that feedback. Then, on the 1st of every month, it:
+
+Gathers all feedback
+
+Retrains the model
+
+Replaces the old one — automatically
+
+No manual updates. No forgotten training runs.
+
+🐳 Ready for Production
+Everything is containerized using Docker and ready to go with one command. It supports:
+
+GPU inference for fast response times
+
+Live API endpoints for classification and feedback
+
+Persistent feedback logging and retraining
+
+Perfect for enterprise environments or integration into existing CRMs and helpdesk systems.
+
+🚀 Summary
+This is not just a classifier — it's a smart assistant that evolves with your workflow. Whether you're managing hundreds or thousands of emails a week, this system helps route them to the right place, right away.
