@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  email_app:
+    build: .
+    container_name: email_classification_app
+    ports:
+      - "8001:8001"
+    volumes:
+      - E:/amir/classification_welodge/outputs/model:/app/outputs/model
+      - E:/amir/classification_welodge/feedback.csv:/app/feedback.csv
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
